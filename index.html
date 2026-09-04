@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyForge</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 20px 45px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #cbd5e1;
+      max-width: 650px;
+      margin: 0 auto 35px;
+      line-height: 1.6;
+    }
+
+    .upload-section {
+      background: #1e293b;
+      max-width: 700px;
+      margin: 20px auto 50px;
+      padding: 35px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .upload-section h2 {
+      margin-bottom: 10px;
+    }
+
+    .upload-section p {
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .upload-box {
+      border: 2px dashed #64748b;
+      border-radius: 14px;
+      padding: 35px 20px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .upload-box:hover {
+      border-color: #60a5fa;
+      background: #172554;
+    }
+
+    .upload-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .upload-button {
+      display: inline-block;
+      background: #3b82f6;
+      color: white;
+      padding: 13px 24px;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .file-name {
+      margin-top: 15px;
+      color: #60a5fa;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .action-button {
+      background: #334155;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .action-button:hover {
+      background: #475569;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 8% 50px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      width: 280px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #93c5fd;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .upload-section {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 25px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">📚 StudyForge</div>
+  </header>
+
+  <section class="hero">
+
+    <h1>
+      Study Smarter.<br>
+      <span>Understand More.</span>
+    </h1>
+
+    <p>
+      Take a picture of your notes or worksheet and use StudyForge
+      to understand what you're learning and prepare for your next test.
+    </p>
+
+  </section>
+
+
+  <section class="upload-section">
+
+    <h2>📸 Upload Your Study Material</h2>
+
+    <p>
+      Upload a photo, screenshot, or PDF of your notes or worksheet.
+    </p>
+
+    <label class="upload-box" for="fileInput">
+
+      <div class="upload-icon">📄</div>
+
+      <div>
+        Tap here to choose a photo or PDF
+      </div>
+
+      <br>
+
+      <span class="upload-button">
+        Choose File
+      </span>
+
+    </label>
+
+    <input
+      type="file"
+      id="fileInput"
+      accept="image/*,.pdf"
+    >
+
+    <div class="file-name" id="fileName">
+      No file selected
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="action-button"
+        onclick="chooseAction('Explain It')"
+      >
+        🧠 Explain It
+      </button>
+
+      <button
+        class="action-button"
+        onclick="chooseAction('Practice Test')"
+      >
+        📝 Practice Test
+      </button>
+
+      <button
+        class="action-button"
+        onclick="chooseAction('Flashcards')"
+      >
+        🔄 Flashcards
+      </button>
+
+    </div>
+
+    <div id="message"></div>
+
+  </section>
+
+
+  <section class="features">
+
+    <div class="card">
+      <h2>🧠 Explain It</h2>
+      <p>
+        Get a simple explanation of the material you're struggling with.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>📝 Practice Tests</h2>
+      <p>
+        Turn your study material into questions with A/B/C/D answers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🔄 Flashcards</h2>
+      <p>
+        Turn important information into easy-to-study flashcards.
+      </p>
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 StudyForge
+  </footer>
+
+
+  <script>
+
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+
+    fileInput.addEventListener("change", function() {
+
+      if (fileInput.files.length > 0) {
+
+        const file = fileInput.files[0];
+
+        fileName.textContent =
+          "Selected: " + file.name;
+
+      } else {
+
+        fileName.textContent =
+          "No file selected";
+
+      }
+
+    });
+
+
+    function chooseAction(action) {
+
+      const message =
+        document.getElementById("message");
+
+      if (fileInput.files.length === 0) {
+
+        message.style.display = "block";
+
+        message.textContent =
+          "📸 Upload a photo or PDF first!";
+
+        return;
+
+      }
+
+      message.style.display = "block";
+
+      message.textContent =
+        "✨ " + action +
+        " will be powered by AI soon!";
+
+    }
+
+  </script>
+
+</body>
+</html>
